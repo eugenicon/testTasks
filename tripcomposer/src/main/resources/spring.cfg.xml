@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.2.xsd">
+
+	<bean id="sessionFactory"
+		class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
+		<property name="configLocation" value="hibernate.cfg.xml" />
+	</bean>
+	<bean id="countryDao"
+		class="com.sin.eugene.tripcomposer.dao.CountryDAO">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	<bean id="countryService"
+		class="com.sin.eugene.tripcomposer.service.CountryService">
+		<property name="countryDao" ref="countryDao"></property>
+		<property
+			value="http://tripcomposer.net/rest/test/countries/get"
+			name="serviceURL">
+		</property>
+		<property name="serviceKey"
+			value="$1$12309856$euBrWcjT767K2sP9MHcVS/">
+		</property>
+		
+		<property name="serviceEcho" value="Echo from bean"></property>
+		
+	</bean>
+	
+	
+	
+
+</beans>
